@@ -41,4 +41,4 @@ def extract_text(file_path):
     if is_well_formatted(raw_html):
         return clean_html(raw_html)
     else:
-        return None
+        return ""

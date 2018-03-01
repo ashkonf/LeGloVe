@@ -1,3 +1,12 @@
+import os
+import sys
+import re
+import time
+import collections
+import json
+
+import bs4
+
 # Reads the contents of a file:
 def read_file(file_path):
     with open(file_path, "r") as file:
@@ -41,4 +50,4 @@ def extract_text(file_path):
     if is_well_formatted(raw_html):
         return clean_html(raw_html)
     else:
-        return None
+        return ""

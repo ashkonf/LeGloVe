@@ -1,5 +1,5 @@
 # LeGlove
-A Python implementation of GloVe for legal domain-specific corpuses.
+A Python implementation of GloVe word vectors for legal domain-specific corpuses.
 
 This implementation builds off of the following open-source repository: https://github.com/maciejkula/glove-python. 
 The original GloVe project can be found here: https://github.com/stanfordnlp/GloVe.

@@ -31,7 +31,7 @@ def is_well_formatted(html):
 
 # Cleans an opinion's HTML, removing some garbage and all HTML meta data:
 def clean_html(html):
-    soup = bs4.BeautifulSoup(html)
+    soup = bs4.BeautifulSoup(html, "html5lib")
     
     for tag in soup.find_all("sup"):
         tag.extract()
@@ -39,7 +39,7 @@ def clean_html(html):
     html = re.sub("&amp;", "&", html)
     html = re.sub("\xe2", "'", html)
 
-    soup = bs4.BeautifulSoup(html)
+    soup = bs4.BeautifulSoup(html, "html5lib")
     paragraphs = [paragraph.get_text() for paragraph in soup.find_all("p")]
     return "\n\n".join(paragraphs)
 

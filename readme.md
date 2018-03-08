@@ -4,6 +4,10 @@ A Python implementation of GloVe word vectors for legal domain-specific corpuses
 This implementation builds off of the following open-source repository: https://github.com/maciejkula/glove-python. 
 The original GloVe project can be found here: https://github.com/stanfordnlp/GloVe.
 
+# Pre-trained Word Vectors
+
+You can download a pre-trained model containing 100-dimensional word vectors here: [LeGlove.model.zip](https://drive.google.com/uc?export=download&id=1JMPie8EZAzaG7ucamrmvO9vg7y3Z2QtT). The model was trained on 63,981 Supreme Court opinions (scotus) from 1789 to 2014. Judicial opinion data is made available through CourtListener, courtesy of the Free Law Project. 
+
 # Usage
 
 `train.py` exports one public function:

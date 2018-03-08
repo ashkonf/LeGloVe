@@ -65,13 +65,14 @@ def read_corpus(data_dir):
     for juris_dir in os.listdir(data_dir):
         # Avoid hidden files in directory
         if (juris_dir.startswith('.')): continue  
-        print('Reading %s...' % juris_dir)
         juris_dir_path = os.path.join(data_dir, juris_dir)
+        if (not os.path.isdir(juris_dir_path)): continue
+        print('Reading %s...' % juris_dir)
 
         for json_file in os.listdir(juris_dir_path):
             if (not json_file.endswith('.json')): continue
             num_files_read += 1
-            if (num_files_read % 1e5 == 0): 
+            if (num_files_read % 1e3 == 0): 
                 print("%d json files read..." % num_files_read)
 
             json_file_path = os.path.join(juris_dir_path, json_file)

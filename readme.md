@@ -34,8 +34,8 @@ Output:
 
 `example.py` contains code, duplicated below for convenience, that illustrates how to load a pre-trained model (by the name of LeGlove.model). 
 
-    		model = Glove.load('LeGlove.model')
-    		dictionary = model.dictionary
+		model = Glove.load('LeGlove.model')
+		dictionary = model.dictionary
 		word_vectors = model.word_vectors
 
 `dictionary` is a map from the string of a word to its word index, for all words. `word_vectors` is a map from a word index to its corresponding word vector, for all word indexes (for all words). The trained vector of a word can thus be accessed by first obtaining its word index from `dictionary` and then using this index to obtain the word vector from `word_vectors`. See `example.py` for further details.

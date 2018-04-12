@@ -4,7 +4,7 @@ A Python implementation of GloVe word vectors for legal domain-specific corpuses
 This implementation builds off of the following open-source repository: https://github.com/maciejkula/glove-python. 
 The original GloVe project can be found here: https://github.com/stanfordnlp/GloVe.
 
-# Pre-trained Word Vectors
+# Pre-trained word vectors
 
 You can download a pre-trained model containing 100-dimensional word vectors here: [LeGlove.model.zip](https://drive.google.com/uc?export=download&id=1JMPie8EZAzaG7ucamrmvO9vg7y3Z2QtT). The model was trained on 63,981 Supreme Court opinions (scotus) from 1789 to 2014. Judicial opinion data is made available through CourtListener, courtesy of the Free Law Project. 
 
@@ -30,6 +30,16 @@ Output:
 
 [**model_name**].model is saved to disk in the current directory. This model can then be loaded to obtain all trained word vectors. 
 
+# Load a trained model
+
+`example.py` contains code, duplicated below for convenience, that illustrates how to load a pre-trained model (by the name of LeGlove.model). 
+
+    		model = Glove.load('LeGlove.model')
+    		dictionary = model.dictionary
+		word_vectors = model.word_vectors
+
+`dictionary` is a map from the string of a word to its word index, for all words. `word_vectors` is a map from a word index to its corresponding word vector, for all word indexes (for all words). The trained vector of a word can thus be accessed by first obtaining its word index from `dictionary` and then using this index to obtain the word vector from `word_vectors`. See `example.py` for further details.
+
 # Dependencies
 
 All dependencies are listed in `requirements.txt`. The necessary libraries can be installed all at once using the following command.
@@ -38,7 +48,7 @@ All dependencies are listed in `requirements.txt`. The necessary libraries can b
 
 While installing `glove_python`, you might run into an error with your gcc not being a sufficiently recent version. To fix this issue, you can run the command ```brew upgrade gcc``` and then try installing all the requirements again. If there are still issues with installation, check https://github.com/maciejkula/glove-python/issues/55 to see if that may be your problem.
 
-# Example Usage: Nearest neighbors
+# Example usage: nearest neighbors
 
 `example.py` contains a sample program that outputs the nearest neighbors of a query word based on the word vectors of a given model. It illustrates how to train a model or load it from disk, as well as how to retrieve word vectors from the model.
 

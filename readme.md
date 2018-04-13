@@ -40,7 +40,12 @@ Output:
 		dictionary = model.dictionary
 		word_vectors = model.word_vectors
 
-`dictionary` is a map from the string of a word to its word index, for all words. `word_vectors` is a map from a word index to its corresponding word vector, for all word indexes (for all words). The trained vector of a word can thus be accessed by first obtaining its word index from `dictionary` and then using this index to obtain the word vector from `word_vectors`. See `example.py` for further details.
+`dictionary` is a map from the string of a word to its word index, for all words. `word_vectors` is a map from a word index to its corresponding word vector, for all word indexes (for all words). 
+
+The trained vector of a word can thus be accessed by first obtaining its word index from `dictionary` and then using this index to obtain the word vector from `word_vectors`. As an example, the following code shows how to obtain the word vector for the word "legal" using this method (stored in the variable `legal_word_vector`).
+
+		legal_word_idx = dictionary['legal']
+        	legal_word_vector = word_vectors[legal_word_idx]
 
 # Dependencies
 

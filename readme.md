@@ -10,6 +10,8 @@ You can download a pre-trained model containing 100-dimensional word vectors her
 
 # Usage
 
+## Training
+
 `train.py` exports one public function:
 	
 		train_and_save_model(data_dir, model_name='LeGlove', num_epochs=10, parallel_threads=1)
@@ -30,7 +32,7 @@ Output:
 
 [**model_name**].model is saved to disk in the current directory. This model can then be loaded to obtain all trained word vectors. 
 
-# Load a trained model
+## Loading a trained model
 
 `example.py` contains code, duplicated below for convenience, that illustrates how to load a pre-trained model (by the name of LeGlove.model). 
 

@@ -32,7 +32,7 @@ Output:
 
 [**model_name**].model is saved to disk in the current directory. This model can then be loaded to obtain all trained word vectors. 
 
-## Loading a trained model
+## Loading and using a trained model
 
 `example.py` contains code, duplicated below for convenience, that illustrates how to load a pre-trained model (by the name of LeGlove.model). 
 

@@ -47,14 +47,18 @@ Output:
 
 The trained vector of a word can thus be accessed by first obtaining its word index from `dictionary` and then using this index to obtain the word vector from `word_vectors`. As an example, the following code shows how to obtain the word vector for the word "legal" using this method (stored in the variable `legal_word_vector`).
 
-		legal_word_idx = dictionary['legal']
-        	legal_word_vector = word_vectors[legal_word_idx]
+```
+legal_word_idx = dictionary['legal']
+legal_word_vector = word_vectors[legal_word_idx]
+```
 
 # Dependencies
 
 All dependencies are listed in `requirements.txt`. The necessary libraries can be installed all at once using the following command.
 
-		pip install -r requirements.txt
+```
+pip install -r requirements.txt
+```
 
 While installing `glove_python`, you might run into an error with your gcc not being a sufficiently recent version. To fix this issue, you can run the command ```brew upgrade gcc``` and then try installing all the requirements again. If there are still issues with installation, check https://github.com/maciejkula/glove-python/issues/55 to see if that may be your problem.
 
@@ -64,12 +68,15 @@ While installing `glove_python`, you might run into an error with your gcc not b
 
 To train a model, you can run the following command:
 
-		python example.py --train_dir data/ --model_name LeGlove --query legal
+```
+python example.py --train_dir data/ --model_name LeGlove --query legal
+```
 
 To load a model, you can run the following command:
 
-		python example.py --load_model LeGlove.model --query legal
-
+```
+python example.py --load_model LeGlove.model --query legal
+```
 
 # References
 

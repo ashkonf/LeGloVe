@@ -1,4 +1,5 @@
 # LeGlove
+
 A Python implementation of GloVe word vectors for legal domain-specific corpuses.
 
 This implementation builds off of the following open-source repository: https://github.com/maciejkula/glove-python. 
@@ -13,8 +14,10 @@ You can download a pre-trained model containing 100-dimensional word vectors her
 ## Training
 
 `train.py` exports one public function:
-	
-		train_and_save_model(data_dir, model_name='LeGlove', num_epochs=10, parallel_threads=1)
+
+```
+train_and_save_model(data_dir, model_name='LeGlove', num_epochs=10, parallel_threads=1)
+```
 
 This function trains and saves a model using the legal corpus in the data directory provided. It does so by first pre-processing the corpus using a series of legal-domain specific regexes. Afterwards, it fits the co-occurence matrix of the corpus to a GloVe model that is saved to the current directory. 
 
@@ -55,7 +58,7 @@ All dependencies are listed in `requirements.txt`. The necessary libraries can b
 
 While installing `glove_python`, you might run into an error with your gcc not being a sufficiently recent version. To fix this issue, you can run the command ```brew upgrade gcc``` and then try installing all the requirements again. If there are still issues with installation, check https://github.com/maciejkula/glove-python/issues/55 to see if that may be your problem.
 
-# Example usage: nearest neighbors
+# Example usage: Nearest neighbors
 
 `example.py` contains a sample program that outputs the nearest neighbors of a query word based on the word vectors of a given model. It illustrates how to train a model or load it from disk, as well as how to retrieve word vectors from the model.
 

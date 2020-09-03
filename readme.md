@@ -2,8 +2,8 @@
 
 A Python implementation of GloVe word vectors for legal domain-specific corpuses.
 
-This implementation builds off of the following open-source repository: https://github.com/maciejkula/glove-python. 
-The original GloVe project can be found here: https://github.com/stanfordnlp/GloVe.
+This implementation builds off of [this open-source repository](https://github.com/maciejkula/glove-python). 
+The original GloVe project can be found [here](https://github.com/stanfordnlp/GloVe).
 
 # Pre-trained word vectors
 
@@ -23,13 +23,10 @@ This function trains and saves a model using the legal corpus in the data direct
 
 Arguments:
 
-1.  **data_dir**: The master directory containing all jurisdiction-level subdirectories. Each of these subdirectories is a list of json files containing the legal opinions. All of the json files in each subdirectory will be read and considered part of the training corpus.
-
-2. **model_name**: Name of the model to be saved to disk. 
-
-3. **num_epochs**: Number of epochs for which to train the model.
-
-4. **parallel_threads**: Number of parallel threads to use for training.
+1.  `data_dir`: The master directory containing all jurisdiction-level subdirectories. Each of these subdirectories is a list of json files containing the legal opinions. All of the json files in each subdirectory will be read and considered part of the training corpus.
+2. `model_name`: Name of the model to be saved to disk. 
+3. `num_epochs`: Number of epochs for which to train the model.
+4. `parallel_threads`: Number of parallel threads to use for training.
 
 Output:
 
@@ -39,9 +36,11 @@ Output:
 
 `example.py` contains code, duplicated below for convenience, that illustrates how to load a pre-trained model (by the name of LeGlove.model). 
 
-		model = Glove.load('LeGlove.model')
-		dictionary = model.dictionary
-		word_vectors = model.word_vectors
+```
+model = Glove.load('LeGlove.model')
+dictionary = model.dictionary
+word_vectors = model.word_vectors
+```
 
 `dictionary` is a map from the string of a word to its word index, for all words. `word_vectors` is a map from a word index to its corresponding word vector, for all word indexes (for all words). 
 

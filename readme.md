@@ -80,5 +80,5 @@ python example.py --load_model LeGlove.model --query legal
 
 # References
 
-Jeffrey Pennington, Richard Socher, and Christopher D. Manning. 2014. GloVe: Global Vectors for Word Representation. 
+[Jeffrey Pennington, Richard Socher, and Christopher D. Manning. 2014. GloVe: Global Vectors for Word Representation.](https://www.aclweb.org/anthology/D14-1162/)
 

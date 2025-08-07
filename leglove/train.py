@@ -10,8 +10,8 @@ except ImportError:
 
 from nltk.tokenize import word_tokenize
 
-from cleanup import extract_text
-from regexes import REGEX_TOKENS, REGEXES
+from .cleanup import extract_text
+from .regexes import REGEX_TOKENS, REGEXES
 
 """
     train.py
@@ -102,14 +102,14 @@ def read_corpus(data_dir: str) -> Generator[List[str], None, None]:
         juris_dir_path = os.path.join(data_dir, juris_dir)
         if not os.path.isdir(juris_dir_path):
             continue
-        print("Reading %s..." % juris_dir)
+        print(f"Reading {juris_dir}...")
 
         for json_file in os.listdir(juris_dir_path):
             if not json_file.endswith(".json"):
                 continue
             num_files_read += 1
             if num_files_read % 1e3 == 0:
-                print("%d json files read..." % num_files_read)
+                print(f"{int(num_files_read)} json files read...")
 
             json_file_path = os.path.join(juris_dir_path, json_file)
             plain_text = extract_text(json_file_path)

@@ -3,7 +3,8 @@
 import json
 import os
 import tempfile
-from typing import Dict, Any, Generator
+from typing import Any, Dict, Generator
+
 import pytest
 
 
@@ -22,7 +23,7 @@ def sample_json_opinion() -> Dict[str, Any]:
         "html_lawbox": None,
         "html": None,
         "html_columbia": None,
-        "plain_text": "Fallback plain text"
+        "plain_text": "Fallback plain text",
     }
 
 
@@ -40,29 +41,29 @@ def sample_corpus_dir(temp_dir: str) -> str:
     """Create a sample corpus directory structure for testing."""
     juris_dir = os.path.join(temp_dir, "scotus")
     os.makedirs(juris_dir)
-    
+
     opinions = [
         {
             "html_with_citations": "<p>First opinion about legal matters.</p>",
             "html_lawbox": None,
             "html": None,
             "html_columbia": None,
-            "plain_text": "First opinion plain text"
+            "plain_text": "First opinion plain text",
         },
         {
             "html_with_citations": "<p>Second opinion discussing court procedures.</p>",
             "html_lawbox": None,
             "html": None,
             "html_columbia": None,
-            "plain_text": "Second opinion plain text"
-        }
+            "plain_text": "Second opinion plain text",
+        },
     ]
-    
+
     for i, opinion in enumerate(opinions):
         file_path = os.path.join(juris_dir, f"opinion_{i}.json")
         with open(file_path, "w") as f:
             json.dump(opinion, f)
-    
+
     return temp_dir
 
 

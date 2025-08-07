@@ -8,7 +8,7 @@ try:
 except ImportError:
     Glove = None
 
-from train import train_and_save_model
+from .train import train_and_save_model
 
 """
     example.py
@@ -79,7 +79,7 @@ def find_nearest_neighbors(model_file: str, word: str) -> None:
         The 10 nearest neighbors of legal are...
         [('law', 0.123), ('court', 0.145), ...]
     """
-    print("The %d nearest neighbors of %s are..." % (K, word))
+    print(f"The {K} nearest neighbors of {word} are...")
 
     # Load model and get dictionary (from word to word index) and word vectors
     if Glove is None:

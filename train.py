@@ -41,25 +41,7 @@ NUM_COMPONENTS = 100  # number of components/dimension of output word vectors
 
 
 def tokenize_text(plain_text: str) -> List[str]:
-    """
-    Tokenize and preprocess legal document text.
-
-    This function accepts a string representation of a legal document as input.
-    It returns a tokenized form of the input after preprocessing using legal
-    domain-specific regex patterns.
-
-    Args:
-        plain_text: Raw text content of a legal document.
-
-    Returns:
-        List of preprocessed tokens from the input text.
-
-    Example:
-        >>> text = "The court held in Smith v. Jones, 123 F.3d 456 (2020)..."
-        >>> tokens = tokenize_text(text)
-        >>> print(tokens[:3])
-        ['the', 'court', 'held']
-    """
+    """Tokenize legal text and replace regex matches with placeholder tokens."""
 
     # Clean plain text by replacing all regex matches
     # with corresponding tokens
@@ -75,24 +57,7 @@ def tokenize_text(plain_text: str) -> List[str]:
 
 
 def read_corpus(data_dir: str) -> Generator[List[str], None, None]:
-    """
-    Generate preprocessed tokens from all JSON files in the data directory.
-
-    This function returns a generator of lists of preprocessed tokens over all
-    JSON files in the given data directory. It processes files from all
-    jurisdiction-level subdirectories.
-
-    Args:
-        data_dir: Master directory containing jurisdiction-level subdirectories
-                 with JSON files containing legal opinions.
-
-    Yields:
-        List of preprocessed tokens for each valid legal document.
-
-    Example:
-        >>> for tokens in read_corpus("/path/to/data"):
-        ...     print(f"Document has {len(tokens)} tokens")
-    """
+    """Yield tokenized documents from JSON files in the given data directory."""
 
     num_files_read = 0
     for juris_dir in os.listdir(data_dir):
@@ -124,26 +89,7 @@ def train_and_save_model(
     num_epochs: int = 10,
     parallel_threads: int = 1,
 ) -> None:
-    """
-    Process legal corpus data and train a GloVe model.
-
-    This function processes all the data into a training corpus and fits a GloVe
-    model to this corpus. The trained model is saved to the current directory.
-
-    Args:
-        data_dir: Master directory containing all jurisdiction-level directories
-                 with JSON files containing legal opinions.
-        model_name: Name of model to be used for output file.
-        num_epochs: Number of epochs for which to train model.
-        parallel_threads: Number of parallel threads to use for training.
-
-    Returns:
-        None. The trained model is saved as "[model_name].model" in the current directory.
-
-    Example:
-        >>> train_and_save_model("/path/to/data", "MyModel", num_epochs=15)
-        # Creates "MyModel.model" file in current directory
-    """
+    """Process a legal corpus and train and save a GloVe model."""
 
     if Corpus is None or Glove is None:
         raise ImportError(

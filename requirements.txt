@@ -1,5 +1,0 @@
-bs4
-glove_python
-nltk
-numpy
-wget

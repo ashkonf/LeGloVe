@@ -1,6 +1,6 @@
 import argparse
-import pprint
 import logging
+import pprint
 
 import numpy as np
 

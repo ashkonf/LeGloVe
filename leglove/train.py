@@ -1,7 +1,7 @@
+import logging
 import os
 import re
 from typing import Generator, List
-import logging
 
 try:
     from glove import Corpus, Glove

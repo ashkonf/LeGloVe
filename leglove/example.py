@@ -1,5 +1,6 @@
 import argparse
 import pprint
+import logging
 
 import numpy as np
 
@@ -8,7 +9,7 @@ try:
 except ImportError:
     Glove = None
 
-from train import train_and_save_model
+from .train import train_and_save_model
 
 """
     example.py
@@ -60,8 +61,26 @@ K = 10  # number of neighbors to output
 
 
 def find_nearest_neighbors(model_file: str, word: str) -> None:
-    """Find and print the K nearest neighbors of a word using Euclidean distance."""
-    print("The %d nearest neighbors of %s are..." % (K, word))
+    """
+    Find and print the K nearest neighbors of a word using Euclidean distance.
+
+    This function finds the K nearest neighbors of a given word using Euclidean
+    distance. It loads a trained GloVe model and prints the top K neighbors of
+    the query word along with their corresponding distances.
+
+    Args:
+        model_file: Path to the trained GloVe model file.
+        word: Query word to find neighbors for.
+
+    Returns:
+        None. Prints the nearest neighbors to stdout.
+
+    Example:
+        >>> find_nearest_neighbors("LeGlove.model", "legal")
+        The 10 nearest neighbors of legal are...
+        [('law', 0.123), ('court', 0.145), ...]
+    """
+    logging.info(f"The {K} nearest neighbors of {word} are...")
 
     # Load model and get dictionary (from word to word index) and word vectors
     if Glove is None:

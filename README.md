@@ -47,7 +47,7 @@ uv sync
 
 ### Training
 
-`train.py` exports one public function:
+`leglove.train` exports one public function:
 
 ```python
 train_and_save_model(data_dir, model_name='LeGlove', num_epochs=10, parallel_threads=1)
@@ -68,7 +68,7 @@ Output:
 
 ### Loading and Using a Trained Model
 
-`example.py` contains code, duplicated below for convenience, that illustrates how to load a pre-trained model (by the name of LeGlove.model).
+`leglove.example` contains code, duplicated below for convenience, that illustrates how to load a pre-trained model (by the name of LeGlove.model).
 
 ```python
 model = Glove.load('LeGlove.model')
@@ -87,18 +87,18 @@ legal_word_vector = word_vectors[legal_word_idx]
 
 ### Example Usage: Nearest Neighbors
 
-`example.py` contains a sample program that outputs the nearest neighbors of a query word based on the word vectors of a given model. It illustrates how to train a model or load it from disk, as well as how to retrieve word vectors from the model.
+`leglove.example` contains a sample program that outputs the nearest neighbors of a query word based on the word vectors of a given model. It illustrates how to train a model or load it from disk, as well as how to retrieve word vectors from the model.
 
 To train a model, you can run the following command:
 
 ```bash
-uv run python example.py --train_dir data/ --model_name LeGlove --query legal
+uv run python -m leglove.example --train_dir data/ --model_name LeGlove --query legal
 ```
 
 To load a model, you can run the following command:
 
 ```bash
-uv run python example.py --load_model LeGlove.model --query legal
+uv run python -m leglove.example --load_model LeGlove.model --query legal
 ```
 
 ## Development

@@ -5,7 +5,7 @@ STAR_PAGINATION_REGEX = r"<span class=\"star-pagination\">\*\d+</span>"
 
 # Identifying citations of laws (in contrast to cases):
 LAW_CITATION_REGEX = (
-    "\u00A7"
+    "\u00a7"
     + r"{1,2} ?[\w\.]+(?: ?\([a-z]+\)(?: ?\(\d+\)(?: (?:(?:and)|(?:or)) \(\d+\))?)?)?"
 )
 
@@ -39,12 +39,7 @@ FEDERAL_COURT_REPORTERS_PATTERN = "|".join(FEDERAL_COURT_REPORTERS)
 PAGE_NUMBER_REGEX = r"(?:, ((?:\d+(?:\-\d+)?)(?:(?: &)? n\. \d+)? ?))"
 YEAR_REGEX = r"(?: ?(?:, )?(\(\d\d\d\d\)))"
 PAGE_SUFFIX_REGEX = r"( ?n\. \d+)?"
-JUDICIAL_OPINION_CITATION_REGEX = r"(\d+) ({}) (?:at )?(\d+)(?:{})?(?:{})?({})?".format(
-    FEDERAL_COURT_REPORTERS_PATTERN,
-    PAGE_NUMBER_REGEX,
-    YEAR_REGEX,
-    PAGE_SUFFIX_REGEX,
-)
+JUDICIAL_OPINION_CITATION_REGEX = rf"(\d+) ({FEDERAL_COURT_REPORTERS_PATTERN}) (?:at )?(\d+)(?:{PAGE_NUMBER_REGEX})?(?:{YEAR_REGEX})?({PAGE_SUFFIX_REGEX})?"
 
 # List of all regexes above
 REGEXES: List[str] = [

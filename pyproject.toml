@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["."]
+packages = ["leglove"]
 
 [project]
 name = "leglove"
@@ -80,7 +80,7 @@ skip-magic-trailing-comma = false
 line-ending = "auto"
 
 [tool.pyright]
-include = ["*.py", "tests/"]
+include = ["leglove", "tests/"]
 exclude = ["**/__pycache__"]
 reportMissingImports = false
 reportMissingTypeStubs = false

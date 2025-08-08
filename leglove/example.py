@@ -38,11 +38,15 @@ def parse_arguments():
         "--model_name", default="LeGlove", help="Name for output model file"
     )
     parser.add_argument(
-        "--num_epochs", default=10, help="Train LeGlove model for this number of epochs"
+        "--num_epochs",
+        default=10,
+        type=int,
+        help="Train LeGlove model for this number of epochs",
     )
     parser.add_argument(
         "--parallel_threads",
         default=1,
+        type=int,
         help="Number of parallel threads to use for training",
     )
     parser.add_argument(
@@ -91,10 +95,7 @@ def find_nearest_neighbors(model_file: str, word: str) -> None:
     dictionary = model.dictionary
     word_vectors = model.word_vectors
 
-    word_to_vector = {}
-    for word in dictionary:
-        word_idx = dictionary[word]
-        word_to_vector[word] = word_vectors[word_idx]
+    word_to_vector = {w: word_vectors[dictionary[w]] for w in dictionary}
 
     # Find closest neighbors by Euclidean distance
     nbr_distances = []
@@ -124,8 +125,8 @@ def main() -> None:
         train_and_save_model(
             args.train_dir,
             model_name=args.model_name,
-            num_epochs=int(args.num_epochs),
-            parallel_threads=int(args.parallel_threads),
+            num_epochs=args.num_epochs,
+            parallel_threads=args.parallel_threads,
         )
         model_file = args.model_name + ".model"
 

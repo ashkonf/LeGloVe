@@ -1,3 +1,4 @@
+import html
 import json
 import re
 from typing import Any, Dict
@@ -34,17 +35,15 @@ def is_well_formatted(html: str) -> bool:
     )
 
 
-def clean_html(html: str) -> str:
+def clean_html(html_content: str) -> str:
     """Remove metadata from opinion HTML and extract paragraph text."""
-    soup = bs4.BeautifulSoup(html, "html5lib")
+    soup = bs4.BeautifulSoup(html_content, "html5lib")
 
     for tag in soup.find_all("sup"):
         tag.extract()
-    html = str(soup)
-    html = re.sub("&amp;", "&", html)
-    html = re.sub("\xe2", "'", html)
+    html_text = html.unescape(str(soup))
 
-    soup = bs4.BeautifulSoup(html, "html5lib")
+    soup = bs4.BeautifulSoup(html_text, "html5lib")
     paragraphs = [paragraph.get_text() for paragraph in soup.find_all("p")]
     return "\n\n".join(paragraphs)
 

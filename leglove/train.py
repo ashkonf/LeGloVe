@@ -36,6 +36,7 @@ from .regexes import REGEX_TOKENS, REGEXES
 CONTEXT_WINDOW = 10  # length of the (symmetric)context window used for cooccurrence
 LEARNING_RATE = 0.05  # learning rate used for model training
 NUM_COMPONENTS = 100  # number of components/dimension of output word vectors
+LOG_INTERVAL = 1000  # number of files between progress logs
 
 
 ## LeGlove #####################################################################################
@@ -47,10 +48,8 @@ def tokenize_text(plain_text: str) -> List[str]:
     # Clean plain text by replacing all regex matches
     # with corresponding tokens
     cleaned_text = plain_text
-    for idx, regex in enumerate(REGEXES):
-        cleaned_text = re.sub(
-            regex, REGEX_TOKENS[idx], cleaned_text, flags=re.IGNORECASE
-        )
+    for regex, token in zip(REGEXES, REGEX_TOKENS):
+        cleaned_text = re.sub(regex, token, cleaned_text, flags=re.IGNORECASE)
 
     # Use NLTK tokenizer to return tokenized form of cleaned text
     tokens = word_tokenize(cleaned_text.lower())
@@ -74,8 +73,8 @@ def read_corpus(data_dir: str) -> Generator[List[str], None, None]:
             if not json_file.endswith(".json"):
                 continue
             num_files_read += 1
-            if num_files_read % 1e3 == 0:
-                logging.info(f"{int(num_files_read)} json files read...")
+            if num_files_read % LOG_INTERVAL == 0:
+                logging.info(f"{num_files_read} json files read...")
 
             json_file_path = os.path.join(juris_dir_path, json_file)
             plain_text = extract_text(json_file_path)

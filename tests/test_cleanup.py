@@ -122,9 +122,9 @@ class TestCleanHtml:
 
     def test_clean_html_fix_entities(self) -> None:
         """Test fixing HTML entities."""
-        html = "<p>Text with &amp; ampersand</p>"
+        html = "<p>Text &amp; &quot;quoted&quot;</p>"
         result = clean_html(html)
-        assert result == "Text with & ampersand"
+        assert result == 'Text & "quoted"'
 
     def test_clean_html_empty(self) -> None:
         """Test cleaning empty HTML."""

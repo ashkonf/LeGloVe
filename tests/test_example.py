@@ -1,5 +1,6 @@
 """Tests for the example module."""
 
+import logging
 from unittest.mock import Mock, patch
 
 import numpy as np
@@ -12,10 +13,12 @@ class TestFindNearestNeighbors:
     """Tests for the find_nearest_neighbors function."""
 
     @patch("leglove.example.Glove")
-    @patch("builtins.print")
     @patch("leglove.example.pprint")
     def test_find_nearest_neighbors_basic(
-        self, mock_pprint: Mock, mock_print: Mock, mock_glove_class: Mock
+        self,
+        mock_pprint: Mock,
+        mock_glove_class: Mock,
+        caplog: pytest.LogCaptureFixture,
     ) -> None:
         """Test basic nearest neighbors functionality."""
         mock_model = Mock()
@@ -29,11 +32,12 @@ class TestFindNearestNeighbors:
         )
         mock_glove_class.load.return_value = mock_model
 
-        find_nearest_neighbors("test_model.model", "legal")
+        with caplog.at_level(logging.INFO):
+            find_nearest_neighbors("test_model.model", "legal")
 
         mock_glove_class.load.assert_called_once_with("test_model.model")
 
-        mock_print.assert_called_once_with("The 10 nearest neighbors of legal are...")
+        assert "The 10 nearest neighbors of legal are..." in caplog.text
 
         mock_pprint.pprint.assert_called_once()
 
@@ -88,8 +92,8 @@ class TestMain:
         mock_args.train_dir = "/path/to/data"
         mock_args.load_model = None
         mock_args.model_name = "TestModel"
-        mock_args.num_epochs = "15"
-        mock_args.parallel_threads = "4"
+        mock_args.num_epochs = 15
+        mock_args.parallel_threads = 4
         mock_args.query = "legal"
         mock_parse_args.return_value = mock_args
 
@@ -145,8 +149,8 @@ class TestMain:
         mock_args.train_dir = "/path/to/data"
         mock_args.load_model = None
         mock_args.model_name = "LeGlove"  # Default value
-        mock_args.num_epochs = "10"  # Default value
-        mock_args.parallel_threads = "1"  # Default value
+        mock_args.num_epochs = 10  # Default value
+        mock_args.parallel_threads = 1  # Default value
         mock_args.query = "legal"
         mock_parse_args.return_value = mock_args
 
